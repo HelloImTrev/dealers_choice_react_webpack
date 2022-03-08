@@ -9,6 +9,17 @@ class ToDo extends React.Component {
     this.state = {
       task: []
     }
+
+    this.addTask = this.addTask.bind(this);
+  }
+
+  async addTask(task) {
+    try {
+      const res = await axios.post(`/api/tasks/${task}`);
+      console.log(res.data);
+    } catch(e) {
+      console.log(e);
+    }
   }
 
   async componentDidMount() {
@@ -23,8 +34,9 @@ class ToDo extends React.Component {
 
   render() {
     const tasks = this.state.task;
+    const addTask = this.addTask
     return(
-      <TaskList tasks={tasks}/>
+      <TaskList tasks={tasks} addTask={addTask}/>
     )
   }
 }
