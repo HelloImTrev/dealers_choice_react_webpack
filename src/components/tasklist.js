@@ -8,7 +8,10 @@ const TaskList = (props) => {
           return <li key={task.id}>{task.name}</li>;
         })}
       </ul>
-      <input type="text"></input><button onClick={() => props.addTask('test')}>Add Task</button>
+      <input id="task" type="text"></input><button onClick={() => {
+        const input = document.getElementById('task').value;
+        props.addTask(input);
+      }}>Add Task</button>
     </div>
   );
 };

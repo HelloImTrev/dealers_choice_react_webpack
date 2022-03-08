@@ -16,7 +16,6 @@ class ToDo extends React.Component {
   async addTask(task) {
     try {
       const res = await axios.post(`/api/tasks/${task}`);
-      console.log(res.data);
     } catch(e) {
       console.log(e);
     }

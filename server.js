@@ -31,8 +31,11 @@ app.use("/dist", express.static(path.join(__dirname, "dist")));
 app.use(express.urlencoded({ extended: false }));
 
 app.post("/api/tasks/:task", async (req, res, next) => {
-  console.log(req.params.task);
-  await Task.create({name: req.params.task});
+  try {
+    await Task.create({ name: req.params.task });
+  } catch (e) {
+    next(e);
+  }
 });
 
 app.get("/", (req, res) => {
