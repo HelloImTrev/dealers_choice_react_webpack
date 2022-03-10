@@ -17,8 +17,8 @@ const TaskList = (props) => {
       <button type="submit" onClick={() => {
           const input = document.getElementById("task").value;
           props.addTask(input);
-        }}
-      >Add Task</button>
+          
+        }}>Add Task</button>
     </div>
   );
 };

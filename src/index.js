@@ -17,10 +17,11 @@ class ToDo extends React.Component {
   
    async addTask(task) {
     try {
-      const res = await axios.post('/api/tasks', { name: task });
-      const task = this.state.task;
+      await axios.post('/api/tasks', { name: task });
+      const res = await axios.get('/api/tasks');
 
-      console.log(task);
+      
+      this.setState({ task: res.data });
 
     } catch(e) {
       console.log(e);
