@@ -5,15 +5,27 @@ const TaskList = (props) => {
     <div>
       <ul>
         {props.tasks.map((task) => {
-          return <li key={task.id}>{task.name}</li>;
+          return (
+            <li key={task.id}>
+              {task.name} <button className="del" onClick={() => props.deleteTask(parseInt(task.id))}>X</button>
+            </li>
+          );
         })}
       </ul>
-      <input id="task" type="text"></input><button onClick={() => {
-        const input = document.getElementById('task').value;
-        props.addTask(input);
-      }}>Add Task</button>
+
+      <input id="task" type="text" />
+      <button type="submit" onClick={() => {
+          const input = document.getElementById("task").value;
+          props.addTask(input);
+        }}
+      >Add Task</button>
     </div>
   );
 };
 
 export default TaskList;
+
+// onClick={() => {
+//   const input = document.getElementById('task').value;
+//   props.addTask(input);
+// }

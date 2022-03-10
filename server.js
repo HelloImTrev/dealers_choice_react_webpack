@@ -28,12 +28,22 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use("/dist", express.static(path.join(__dirname, "dist")));
-app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
-app.post("/api/tasks/:task", async (req, res, next) => {
+app.post("/api/tasks", async (req, res, next) => {
   try {
-    await Task.create({ name: req.params.task });
+    await Task.create(req.body);
   } catch (e) {
+    next(e);
+  }
+});
+
+app.delete('/api/tasks/:id', async (req, res, next) => {
+  try{
+    const destroyedTask = await Task.findByPk(req.params.id);
+    console.log(destroyedTask)
+    await destroyedTask.destroy();
+  } catch(e) {
     next(e);
   }
 });
