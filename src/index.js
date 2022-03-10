@@ -18,8 +18,9 @@ class ToDo extends React.Component {
    async addTask(task) {
     try {
       const res = await axios.post('/api/tasks', { name: task });
+      const task = this.state.task;
 
-      console.log(res);
+      console.log(task);
 
     } catch(e) {
       console.log(e);
@@ -29,11 +30,11 @@ class ToDo extends React.Component {
   async deleteTask(id) {
     try {
       const res = await axios.delete(`/api/tasks/${id}`);
-      const newTaskList = this.state.task.filter((task) => {
-        task.id !== id;
+      const task = this.state.task.filter((task) => {
+        return task.id !== id;
       });
-      this.setState({ task: newTaskList });
-      res.status;
+
+      this.setState({ task });
     } catch(e) {
       console.log(e);
     }

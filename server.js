@@ -33,6 +33,7 @@ app.use(express.json());
 app.post("/api/tasks", async (req, res, next) => {
   try {
     await Task.create(req.body);
+    res.sendStatus(201);
   } catch (e) {
     next(e);
   }
@@ -41,8 +42,8 @@ app.post("/api/tasks", async (req, res, next) => {
 app.delete('/api/tasks/:id', async (req, res, next) => {
   try{
     const destroyedTask = await Task.findByPk(req.params.id);
-    console.log(destroyedTask)
     await destroyedTask.destroy();
+    res.sendStatus(204);
   } catch(e) {
     next(e);
   }
