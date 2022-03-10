@@ -20,9 +20,7 @@ class ToDo extends React.Component {
       await axios.post('/api/tasks', { name: task });
       const res = await axios.get('/api/tasks');
 
-      
       this.setState({ task: res.data });
-
     } catch(e) {
       console.log(e);
     }

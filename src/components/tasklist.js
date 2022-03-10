@@ -24,8 +24,3 @@ const TaskList = (props) => {
 };
 
 export default TaskList;
-
-// onClick={() => {
-//   const input = document.getElementById('task').value;
-//   props.addTask(input);
-// }
